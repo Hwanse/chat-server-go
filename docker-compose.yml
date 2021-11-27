@@ -1,0 +1,21 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  db:
+    # apple silicon m1 Chip mac은 mysql 이미지의 baseimage인 amd를 지원하지 않음
+    # 따라서 m1 mac은 roseta를 활용해 아래와 같이 platform을 명시해줘야 mysql 이미지 pull이 가능함
+    platform: linux/x86_64
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: chat_server
+      MYSQL_USER: chat_server
+      MYSQL_PASSWORD: chat_server
+      TZ: Asia/Seoul

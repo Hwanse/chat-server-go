@@ -1,5 +1,5 @@
-package chat_server_go
+package main
 
 func main() {
-
+	InitializeServer()
 }
